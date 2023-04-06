@@ -1,0 +1,22 @@
+<launch>
+
+    <group ns="launch">
+    	
+        <node name="polinominal" pkg="sasha_pkg" type="polinominal.py" output="screen">
+            <remap from="topic1" to="degree"/>
+            <remap from="topic2" to="sum"/>
+        </node>
+
+        <node name="summing" pkg="sasha_pkg" type="summing.py" output="screen">
+            <remap from="topic2" to="sum"/>
+            <remap from="topic3" to="result"/>
+        </node>
+    </group>
+    
+    <node name="request" pkg="sasha_pkg" type="request.py" output="screen">        
+        <remap from="topic3" to="launch/result"/>
+        <remap from="topic1" to="launch/degree"/>
+    </node>    
+       
+</launch>
+
